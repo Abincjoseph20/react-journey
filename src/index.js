@@ -15,7 +15,6 @@ const books = [
    img: './images/book-2.jpg',
    id:2,
  },
- 
 {
    title :'dummy 2',
    author : 'Joseph Murphy',
@@ -28,13 +27,48 @@ const BookList = () => {
 
   return (
   <section className='booklist'>
+    <EventExample/>
     {books.map((book)=>{
-      const {img,title,author,id} = book;
-      return <Book {...book} key={id} />;
+      return <Book {...book} key={book.id} />;
     })}
   </section>
   );
 };
+const EventExample= ()=>{
+
+  const handleInput = (e)=>{
+    console.log(e.target);
+  }
+
+  const handleButtonAlert = ()=>{
+    alert('handle form alert');
+  }
+
+  const handleformSubmisson = (e)=> {
+    e.preventDefault();
+    console.log('submit form');
+  };
+
+  return (
+    <section>
+      <form  onSubmit={handleformSubmisson}>
+      <h2>typical Form</h2>
+      <input
+      type='text' 
+      name='product' 
+      onChange={handleInput} 
+      style={{margin: '1rem 0' }}
+      />
+     
+      <button type='submit'>submit</button> 
+      
+       <br/><br/>
+
+      <button onClick={handleButtonAlert} type='button'>click me</button> 
+      </form>
+    </section>
+  );
+}
 
 const Book=(props)=>{
 const {img,title,author}=props;
